@@ -17,7 +17,8 @@ resource "aws_iam_role" "scheduled_task_cw_event_role" {
 data "template_file" "scheduled_task_cw_event_role_cloudwatch_policy" {
   template = "${file("${path.module}/files/iam/scheduled_task_cw_event_role_cloudwatch_policy.json")}"
   vars     = {
-    TASK_EXECUTION_ROLE_ARN = var.ecs_execution_task_role_arn
+    ECS_CLUSTER_ARN = var.ecs_cluster_arn
+    TASK_DEFINITION = var.event_target_ecs_target_task_definition_arn
   }
 }
 

@@ -4,10 +4,10 @@
       {
           "Effect": "Allow",
           "Action": "ecs:RunTask",
-          "Resource": "${event_target_ecs_target_task_definition_arn}",
+          "Resource": "${TASK_DEFINITION}",
           "Condition": {
               "ArnLike": {
-                  "ecs:cluster": "${ecs_cluster_arn}",
+                  "ecs:cluster": "${ECS_CLUSTER_ARN}"
               }
           }
       },
