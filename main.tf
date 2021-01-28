@@ -10,7 +10,7 @@ provider "aws" {
 # CLOUDWATCH EVENT ROLE
 # ---------------------------------------------------------------------------------------------------------------------
 resource "aws_iam_role" "scheduled_task_cw_event_role" {
-  name               = var.name_preffix}-st-cw-role
+  name               = "${var.name_preffix}-st-cw-role"
   assume_role_policy = file("${path.module}/files/iam/scheduled_task_cw_event_role_assume_role_policy.json")
 }
 
@@ -18,7 +18,7 @@ data "template_file" "scheduled_task_cw_event_role_cloudwatch_policy" {
   template = file("${path.module}/files/iam/scheduled_task_cw_event_role_cloudwatch_policy.json")
   vars     = {
     ECS_CLUSTER_ARN = var.ecs_cluster_arn
-    TASK_DEFINITION = replace(var.event_target_ecs_target_task_definition_arn, "/:\d+$/", ":*")
+    TASK_DEFINITION = replace(var.event_target_ecs_target_task_definition_arn, "/:*+$/", ":*")
   }
 }
 
