@@ -18,7 +18,7 @@ data "template_file" "scheduled_task_cw_event_role_cloudwatch_policy" {
   template = file("${path.module}/files/iam/scheduled_task_cw_event_role_cloudwatch_policy.json")
   vars = {
     ECS_CLUSTER_ARN = var.ecs_cluster_arn
-    TASK_DEFINITION = replace(var.event_target_ecs_target_task_definition_arn, "/:.+?$/", ":*")
+    TASK_DEFINITION = replace(var.event_target_ecs_target_task_definition_arn, "/:[[:digit:]]+?$/", ":*")
   }
 }
 
