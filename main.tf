@@ -11,7 +11,7 @@ provider "aws" {
 # ---------------------------------------------------------------------------------------------------------------------
 resource "aws_iam_role" "scheduled_task_cw_event_role" {
   name               = "${var.name_preffix}-st-cw-role"
-  assume_role_policy = file("path.module/files/iam/scheduled_task_cw_event_role_assume_role_policy.json")
+  assume_role_policy = file("${path.module}/files/iam/scheduled_task_cw_event_role_assume_role_policy.json")
 }
 
 data "template_file" "scheduled_task_cw_event_role_cloudwatch_policy" {
